@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import {variables} from '../variables';
 import {connect} from 'react-redux';
 //components
-import List from '../components/List'
+import List from '../components/List';
+import Button from '../components/Button';
 
 const Wrapper = styled.div`
     width:100vw;
@@ -29,6 +30,9 @@ const Base = (
         <Wrapper>
             <Title>{mainTitle}</Title>
            <List posts={content} />
+           <Button
+                label='Add Article'
+            />
         </Wrapper>
     )
 };

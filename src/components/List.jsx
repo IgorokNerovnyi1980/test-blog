@@ -7,7 +7,7 @@ import Item from './Item';
 const Wrapper = styled.div`
     width:90%;
     height:auto;
-    min-height:80vh;
+    min-height:70vh;
     padding-top: 10px;
     border-radius:5px;
     background-color:${variables.accentBG};
@@ -29,6 +29,7 @@ const List = (
                         key={id}
                         title={title}
                         body={body}
+                        id={id}
                     />
                 ))
                 :

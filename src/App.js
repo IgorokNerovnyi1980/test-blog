@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import {createGlobalStyle} from 'styled-components';
 import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getData, getSinglePost} from './redux/actions';
+import {getData} from './redux/actions';
 //pages
 import Base from './pages/Base';
+import Post from './pages/Post';
 
 
 const GlobalStyle = createGlobalStyle `
@@ -24,6 +25,11 @@ const GlobalStyle = createGlobalStyle `
     font-weight: normal;
   }
 
+  input, textarea, button{
+    outline: none;
+    border:none;
+  }
+
   body{
     font-family: 'Helvetica', sans-serif;
     font-size: 14px;
@@ -33,10 +39,6 @@ const GlobalStyle = createGlobalStyle `
     overflow-x: hidden;
     background: #ffffff;
     line-height: normal;
-  }
-
-  input, textarea{
-    outline: none;
   }
 
   @media (min-width: 1921px) {
@@ -49,18 +51,15 @@ const GlobalStyle = createGlobalStyle `
 function App(
   {
     getData = () => { },
-    getSinglePost = () => { },
     posts = [],
-    singlePost ={}
 
   }) {
 
    useEffect(() => {
     getData();
-    getSinglePost(3);
    },[]); //eslint-disable-line
 
-   console.log('singlePost',singlePost);
+   console.log('Posts',posts);
 
     return (
         <> 
@@ -72,11 +71,17 @@ function App(
                   render={props => <Base {...{...props, content:posts}}/>
                   }
               />
+               <Route
+                  path='/posts/:id'
+                  render={props => <Post {...props} />
+                  }
+                />
               <Route
                   path='/posts'
                   render={props => <Base {...{...props, content:posts}}/>
                   }
               />
+              
             <Route render={() => <h3 style={{textAlign:'center', marginTop:'200px'}}>Not found</h3>}/>
           </Switch>
         </>
@@ -86,12 +91,10 @@ function App(
 const STP = state => (
     {
       posts: state.posts,
-      singlePost:state.singlePost
     }
 );
 
 const DTP = dispatch => ({
-    getData: () => dispatch(getData()),
-    getSinglePost : (id) => dispatch(getSinglePost(id))});
+    getData: () => dispatch(getData())});
 
 export default connect(STP, DTP,)(App);

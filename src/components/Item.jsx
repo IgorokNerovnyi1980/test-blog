@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
 import {variables} from '../variables';
 
+const WrapLink = styled(NavLink)`
+     width:90%;
+     text-decoration:none;
+    
+`;
+
 const Wrapper = styled.div`
-    width:90%;
     margin-top:10px;
     min-height:30px;
     border:1px solid ${variables.secondaryBG};
@@ -37,13 +43,16 @@ const Wrapper = styled.div`
 const Item = (
     {
         title = 'default',
-        body = ''
+        body = '',
+        id= ''
     }) => {
     return(
-        <Wrapper>
-            <h3>{title}</h3>
-            <p>{body}</p>
-        </Wrapper>
+        <WrapLink to={`/posts/${id}`} >
+            <Wrapper>
+                <h3>{title}</h3>
+                <p>{body}</p>
+            </Wrapper>
+        </WrapLink>
     )
 };
 

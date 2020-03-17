@@ -31,16 +31,12 @@ export const getData = function () {
 
 export const getSinglePost = function (id) {
 
-                console.log('in fn', id);
-
     return async function (dispatch) {
         const result = await axios
             .get(`${API.URL}/${id}`)
             .catch(error => {
                 return error;
             });
-            
-            console.log(result);
 
         if (result.status === 200) {
             console.log('good');

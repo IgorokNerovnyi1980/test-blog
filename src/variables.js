@@ -1,15 +1,15 @@
 export const variables = {
     //backgrounds
     mainBG: 'grey',
-    secondaryBG: 'green',
+    secondaryBG: '#4f69d1',
     accentBG:'white',
     //colors
     titleClr: '#2F4F4F',
     textClr: 'black',
     accentClr:'white',
     hoverClr: 'grey',
-    tabClr: 'white',
     linkClr: '#a3bad9',
+    secondaryClr: '#4f69d1',
     //font-sizes
     h1FZ:'2em',
     titleFZ: '1.8em',

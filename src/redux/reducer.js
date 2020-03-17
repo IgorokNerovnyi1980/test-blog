@@ -3,9 +3,16 @@ import {Type} from './types';
 const initialState = {
     posts: null,
     mainTitle: 'Hi! this actuality blog!',
-    singlePost:null
+    singlePost:null,
+    inputValues:{
+        title:'',
+        body:'',
+        comment:''
+    },
+    isShowForm: false,
 
 };
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -19,6 +26,28 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 singlePost: action.payload
             };
+
+        case Type.PUT_TITLE:
+            return { 
+                ...state,
+                inputValues: {...state.inputValues, title:action.payload}
+            };
+        case Type.PUT_BODY:
+            return { 
+                ...state,
+                inputValues: {...state.inputValues, body:action.payload}
+            };
+        case Type.PUT_COMMENT:
+            return { 
+                ...state,
+                inputValues: {...state.inputValues, comment:action.payload}
+            };
+            
+        case Type.FLAG:
+        return { 
+            ...state,
+            isShowForm: action.payload
+        };
         default:
             return state;
     }

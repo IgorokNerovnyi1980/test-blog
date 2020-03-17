@@ -1,8 +1,22 @@
 import axios from 'axios';
 import {Type} from './types';
-import {API, singlePost} from '../constants'
+import {API} from '../constants'
 
+function putValueFlag(bool){
+    return {type: Type.FLAG, payload: bool};
+};
 
+function putNewTitle(str){
+    return {type: Type.PUT_TITLE, payload: str};
+};
+
+function putNewBody(str){
+    return {type: Type.PUT_BODY, payload: str};
+};
+
+// function putNewComment(str){
+//     return {type: Type.PUT_COMMENT, payload: str};
+// };
 
 function putPostsInStore(arr) {
     return {type: Type.GET_DATA, payload: arr};
@@ -39,10 +53,50 @@ export const getSinglePost = function (id) {
             });
 
         if (result.status === 200) {
-            console.log('good');
             dispatch(putSinglePostInStore(result.data));
         }
 
     };
+};
+
+export const handleInputsChange = (name, value) => {
+
+    return function (dispatch){
+        switch(name){
+            case 'title':
+                dispatch(putNewTitle(value));
+                break
+               case 'body':
+                dispatch(putNewBody(value));
+                break
+            default:
+                return;
+        }
+    }
+   
+    
+};
+
+export const handleSubmit = (obj) => {
+    return async function () {
+        const result = await axios
+            .post(`${API.URL}`,obj)
+            .catch(error => {
+                return error;
+            });
+
+        if (result.status === 201) {
+            console.log('create new Post');
+        }else{
+            console.log('not created Post')
+        }
+
+    };
+};
+
+export const setFlag = (bool) => {
+    return function (dispatch){
+        dispatch(putValueFlag(bool));
+        }
 };
 

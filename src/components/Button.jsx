@@ -25,9 +25,13 @@ const Button = (
     {
         label = 'default',
         fnClick = () => { },
+        type = 'button'
     }) => {
     return(
-        <Wrapper onClick={fnClick}>
+        <Wrapper 
+            onClick={fnClick}
+            type={type}
+        >
             {label}
         </Wrapper>
     )

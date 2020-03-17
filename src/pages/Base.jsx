@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import {variables} from '../variables';
 import {connect} from 'react-redux';
+import {setFlag} from '../redux/actions';
 //components
 import List from '../components/List';
 import Button from '../components/Button';
+import NewPost from '../components/NewPost';
 
 const Wrapper = styled.div`
     width:100vw;
@@ -23,8 +25,15 @@ const Title = styled.h1`
 const Base = (
     {
         content = null,
-        mainTitle = 'default'
+        mainTitle = 'default',
+        setFlag = () => { },
+        isNewPost = false
     }) => {
+
+        const createNewPost = () => {
+            setFlag(true);
+        }
+
     return(
         
         <Wrapper>
@@ -32,16 +41,21 @@ const Base = (
            <List posts={content} />
            <Button
                 label='Add Article'
+                fnClick={createNewPost}
             />
+            {isNewPost && <NewPost /> }
         </Wrapper>
     )
 };
 const STP = state => (
-    {mainTitle: state.mainTitle}
+    {
+        mainTitle: state.mainTitle,
+        isNewPost: state.isShowForm,
+    }
 );
 
-// const DTP = dispatch => ({
-//     getData: () => dispatch(getData()),
-// });
+const DTP = dispatch => ({
+    setFlag: (bool) => dispatch(setFlag(bool)),
+});
 
-export default connect(STP, null)(Base);
+export default connect(STP, DTP)(Base);

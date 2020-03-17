@@ -1,6 +1,6 @@
 export const variables = {
     //backgrounds
-    mainBG: 'grey',
+    mainBG: '#4a4b4f',
     secondaryBG: '#4f69d1',
     accentBG:'white',
     //colors

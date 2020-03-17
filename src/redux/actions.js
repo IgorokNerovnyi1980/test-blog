@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Type} from './types';
-import {AllPosts} from '../constants'
+import {API, singlePost} from '../constants'
 
 
 
@@ -8,22 +8,43 @@ function putPostsInStore(arr) {
     return {type: Type.GET_DATA, payload: arr};
 };
 
+function putSinglePostInStore(obj){
+    return{type:Type.GET_POST, payload:obj}
+}
+
 
 
 export const getData = function () {
 
     return async function (dispatch) {
         const result = await axios
-            .get(AllPosts)
+            .get(API.URL)
             .catch(error => {
                 return error;
             });
-            console.log(result)
         if (result.status === 200) {
-            console.log('good')
             dispatch(putPostsInStore(result.data));
-        }else{
-            console.log('else')
+        };
+
+    };
+};
+
+export const getSinglePost = function (id) {
+
+                console.log('in fn', id);
+
+    return async function (dispatch) {
+        const result = await axios
+            .get(`${API.URL}/${id}`)
+            .catch(error => {
+                return error;
+            });
+            
+            console.log(result);
+
+        if (result.status === 200) {
+            console.log('good');
+            dispatch(putSinglePostInStore(result.data));
         }
 
     };

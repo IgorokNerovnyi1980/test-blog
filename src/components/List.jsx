@@ -8,6 +8,7 @@ const Wrapper = styled.div`
     width:90%;
     height:auto;
     min-height:80vh;
+    padding-top: 10px;
     border-radius:5px;
     background-color:${variables.accentBG};
     display:flex;
@@ -23,13 +24,16 @@ const List = (
 
         return(
             <Wrapper>
-                {posts && posts.map(({id, title, body}) =>(
+                {posts ? posts.map(({id, title, body}) =>(
                     <Item 
                         key={id}
                         title={title}
                         body={body}
                     />
-                ))}
+                ))
+                :
+                    <p>Loading...</p>
+                }
             </Wrapper>
         )
 };

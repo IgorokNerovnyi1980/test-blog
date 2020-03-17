@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {createGlobalStyle} from 'styled-components';
+import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getData} from './redux/actions';
+import {getData, getSinglePost} from './redux/actions';
 //pages
 import Base from './pages/Base';
 
@@ -48,30 +49,49 @@ const GlobalStyle = createGlobalStyle `
 function App(
   {
     getData = () => { },
+    getSinglePost = () => { },
     posts = [],
+    singlePost ={}
 
   }) {
 
    useEffect(() => {
     getData();
+    getSinglePost(3);
    },[]); //eslint-disable-line
 
-   console.log(posts);
+   console.log('singlePost',singlePost);
 
     return (
         <> 
-        < GlobalStyle /> 
-        <Base content={posts}/>
+          < GlobalStyle /> 
+          <Switch>
+            <Route
+                  path='/'
+                  exact
+                  render={props => <Base {...{...props, content:posts}}/>
+                  }
+              />
+              <Route
+                  path='/posts'
+                  render={props => <Base {...{...props, content:posts}}/>
+                  }
+              />
+            <Route render={() => <h3 style={{textAlign:'center', marginTop:'200px'}}>Not found</h3>}/>
+          </Switch>
         </>
     );
 }
 
 const STP = state => (
-    {posts: state.posts}
+    {
+      posts: state.posts,
+      singlePost:state.singlePost
+    }
 );
 
 const DTP = dispatch => ({
     getData: () => dispatch(getData()),
-});
+    getSinglePost : (id) => dispatch(getSinglePost(id))});
 
 export default connect(STP, DTP,)(App);

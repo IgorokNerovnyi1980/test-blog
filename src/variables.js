@@ -6,10 +6,12 @@ export const variables = {
     //colors
     titleClr: '#2F4F4F',
     textClr: 'black',
+    accentClr:'white',
     hoverClr: 'grey',
     tabClr: 'white',
     linkClr: '#a3bad9',
     //font-sizes
+    h1FZ:'2em',
     titleFZ: '1.8em',
     mainFZ: '1em',
     secondayFZ: '0.8em',

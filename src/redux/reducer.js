@@ -2,6 +2,8 @@ import {Type} from './types';
 
 const initialState = {
     posts: null,
+    mainTitle: 'Hi! this actuality blog!',
+    singlePost:null
 
 };
 
@@ -11,6 +13,11 @@ const reducer = (state = initialState, action) => {
             return { 
                 ...state,
                 posts: action.payload
+            };
+        case Type.GET_POST:
+            return { 
+                ...state,
+                singlePost: action.payload
             };
         default:
             return state;

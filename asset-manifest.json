@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/IgorokNerovnyi1980/test-blog/static/js/main.81497f03.chunk.js",
+    "main.js.map": "/IgorokNerovnyi1980/test-blog/static/js/main.81497f03.chunk.js.map",
+    "runtime-main.js": "/IgorokNerovnyi1980/test-blog/static/js/runtime-main.ecb4bbf0.js",
+    "runtime-main.js.map": "/IgorokNerovnyi1980/test-blog/static/js/runtime-main.ecb4bbf0.js.map",
+    "static/js/2.0598dc27.chunk.js": "/IgorokNerovnyi1980/test-blog/static/js/2.0598dc27.chunk.js",
+    "static/js/2.0598dc27.chunk.js.map": "/IgorokNerovnyi1980/test-blog/static/js/2.0598dc27.chunk.js.map",
+    "index.html": "/IgorokNerovnyi1980/test-blog/index.html",
+    "precache-manifest.4561b17b06f185932d163bcc403a5bb8.js": "/IgorokNerovnyi1980/test-blog/precache-manifest.4561b17b06f185932d163bcc403a5bb8.js",
+    "service-worker.js": "/IgorokNerovnyi1980/test-blog/service-worker.js",
+    "static/js/2.0598dc27.chunk.js.LICENSE.txt": "/IgorokNerovnyi1980/test-blog/static/js/2.0598dc27.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ecb4bbf0.js",
+    "static/js/2.0598dc27.chunk.js",
+    "static/js/main.81497f03.chunk.js"
+  ]
+}

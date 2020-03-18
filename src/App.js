@@ -59,8 +59,6 @@ function App(
     getData();
    },[]); //eslint-disable-line
 
-   console.log('Posts',posts);
-
     return (
         <> 
           < GlobalStyle /> 

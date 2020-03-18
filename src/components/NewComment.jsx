@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import {variables} from '../variables';
-import FormPost from './FormPost';
+import Form from './FormComment';
 
 const Wrapper = styled.div`
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    padding-top: 10px;
+    top:85%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:91%;
+    height:150px;
     border-radius:5px;
     background-color:${variables.mainBG};
     display:flex;
@@ -18,14 +18,14 @@ const Wrapper = styled.div`
    
 `;
 
-const NewPost = () => {
+const NewComment = ({id = null}) => {
 
     return(
         <Wrapper>
-            <FormPost />
+            <Form id={id} />
         </Wrapper>
     )
 
 };
 
-export default NewPost;
+export default NewComment;

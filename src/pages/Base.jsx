@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {variables} from '../variables';
 import {connect} from 'react-redux';
-import {setFlag} from '../redux/actions';
+import {setFlagPost} from '../redux/actions';
 //components
 import List from '../components/List';
 import Button from '../components/Button';
@@ -28,12 +28,12 @@ const Base = (
     {
         content = null,
         mainTitle = 'default',
-        setFlag = () => { },
+        setFlagPost = () => { },
         isNewPost = false
     }) => {
 
         const createNewPost = () => {
-            setFlag(true);
+            setFlagPost(true);
         }
 
     return(
@@ -52,12 +52,12 @@ const Base = (
 const STP = state => (
     {
         mainTitle: state.mainTitle,
-        isNewPost: state.isShowForm,
+        isNewPost: state.isShowFormPost,
     }
 );
 
 const DTP = dispatch => ({
-    setFlag: (bool) => dispatch(setFlag(bool)),
+    setFlagPost: (bool) => dispatch(setFlagPost(bool)),
 });
 
 export default connect(STP, DTP)(Base);

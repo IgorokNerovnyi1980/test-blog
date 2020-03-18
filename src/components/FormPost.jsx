@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 import {
     handleInputsChange,
     handleSubmit,
-    setFlag,
+    setFlagPost,
     getData} from '../redux/actions'
 //components
-import Button from '../components/Button';
+import Button from './Button';
 
 const Wrapper = styled.form`
     width:90%;
@@ -44,11 +44,11 @@ const Wrapper = styled.form`
     }
 `;
 
-const Form = (
+const FormPost = (
     {
         handleInputChange = () => { },
         handleSubmit = () => { },
-        setFlag = () => { },
+        setFlagPost = () => { },
         getData = () => { },
         val = null
     }) => {
@@ -66,13 +66,13 @@ const Form = (
             handleSubmit(result);
             handleInputChange('title', '');
             handleInputChange('body', '');
-            setFlag(false);
+            setFlagPost(false);
             setTimeout( () => getData(), 1000)
             
         }
 
         const fnCancel = () => {
-            setFlag(false);
+            setFlagPost(false);
         }
 
     return(
@@ -99,8 +99,8 @@ const STP = state => (
 const DTP = dispatch => ({
     handleInputChange: (name, value) => dispatch(handleInputsChange(name, value)),
     handleSubmit: (obj) => dispatch(handleSubmit(obj)),
-    setFlag: (bool) => dispatch(setFlag(bool)),
+    setFlagPost: (bool) => dispatch(setFlagPost(bool)),
     getData: () => dispatch(getData())
 });
 
-export default connect(STP, DTP,)(Form);
+export default connect(STP, DTP,)(FormPost);

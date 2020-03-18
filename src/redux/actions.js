@@ -6,8 +6,12 @@ function putValueRedirect(bool){
     return {type: Type.REDIRECT, payload: bool};
 };
 
-function putValueFlag(bool){
-    return {type: Type.FLAG, payload: bool};
+function putValueFlagPost(bool){
+    return {type: Type.FLAG_POST, payload: bool};
+};
+
+function putValueFlagComment(bool){
+    return {type: Type.FLAG_COMMENT, payload: bool};
 };
 
 function putNewTitle(str){
@@ -18,9 +22,9 @@ function putNewBody(str){
     return {type: Type.PUT_BODY, payload: str};
 };
 
-// function putNewComment(str){
-//     return {type: Type.PUT_COMMENT, payload: str};
-// };
+function putNewComment(str){
+    return {type: Type.PUT_COMMENT, payload: str};
+};
 
 function putPostsInStore(arr) {
     return {type: Type.GET_DATA, payload: arr};
@@ -33,7 +37,7 @@ function putSinglePostInStore(obj){
 
 
 export const getData = function () {
-    console.log('getData')
+    
     return async function (dispatch) {
         const result = await axios
             .get(API.URL)
@@ -42,7 +46,7 @@ export const getData = function () {
             });
         if (result.status === 200) {
             dispatch(putPostsInStore(result.data));
-            
+            console.log('get post from Api')
         };
 
     };
@@ -90,6 +94,9 @@ export const handleInputsChange = (name, value) => {
                case 'body':
                 dispatch(putNewBody(value));
                 break
+            case 'comment':
+                dispatch(putNewComment(value));
+                break
             default:
                 return;
         }
@@ -116,10 +123,35 @@ export const handleSubmit = (obj) => {
     };
 };
 
+export const handleSubmitComment = (obj) => {
+    console.log(obj);
+    return async function () {
+        const result = await axios
+            .post(`${API.URL_CMT}`,obj)
+            .catch(error => {
+                return error;
+            });
 
-export const setFlag = (bool) => {
+        if (result.status === 201) {
+            console.log('create new Comment');
+            getData();
+        }else{
+            console.log('not created Comment')
+        }
+
+    };
+};
+
+
+export const setFlagPost = (bool) => {
     return function (dispatch){
-        dispatch(putValueFlag(bool));
+        dispatch(putValueFlagPost(bool));
+        }
+};
+
+export const setFlagComment = (bool) => {
+    return function (dispatch){
+        dispatch(putValueFlagComment(bool));
         }
 };
 

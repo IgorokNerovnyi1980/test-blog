@@ -8,10 +8,12 @@ import {
     getSinglePost,
     deleteSinglePost,
     setRedirect,
-    getData} from '../redux/actions';
+    getData,
+    setFlagComment} from '../redux/actions';
 //components
 import Content from '../components/Content';
 import Button from '../components/Button';
+import NewComment from '../components/NewComment';
 
 const Wrapper = styled.div`
     width:100vw;
@@ -44,8 +46,10 @@ const Post = (
         deleteSinglePost = () => { },
         setRedirect = () => { },
         getData = () => { },
+        setFlagComment = () => { },
         singlePost = null,
-        redirect = false
+        redirect = false,
+        isShowForm = false,
 
     }) => {
     const { id } = useParams();
@@ -61,6 +65,11 @@ const Post = (
         setTimeout( () => setRedirect(false), 1000)
     };
 
+    const createNewComment = () => {
+        console.log('wer')
+        setFlagComment(true);
+    }
+
         return(
             redirect 
             ? 
@@ -70,6 +79,7 @@ const Post = (
             <WrapLink to='/posts'>
                 <Title>To main Page</Title>
             </WrapLink>
+            {isShowForm ? <NewComment id={id} /> : null}
             
             {singlePost && 
             <Content
@@ -79,6 +89,7 @@ const Post = (
             <div className="btnBox">
                 <Button
                     label='Add Comment'
+                    fnClick={createNewComment}
                 />
 
                 <Button
@@ -96,7 +107,8 @@ const Post = (
 const STP = state => (
     {
       singlePost:state.singlePost,
-      redirect:state.redirect
+      redirect:state.redirect,
+      isShowForm:state.isShowFormComment
     }
 );
 
@@ -105,6 +117,7 @@ const DTP = dispatch => ({
     deleteSinglePost: (id) => dispatch(deleteSinglePost(id)),
     setRedirect: (bool) => dispatch(setRedirect(bool)),
     getData: () => dispatch(getData()),
+    setFlagComment: (bool) => dispatch(setFlagComment(bool)),
 });
 
 export default connect(STP, DTP,)(Post);

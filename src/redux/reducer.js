@@ -9,7 +9,8 @@ const initialState = {
         body:'',
         comment:''
     },
-    isShowForm: false,
+    isShowFormPost: false,
+    isShowFormComment: false,
     redirect:false,
 
 };
@@ -44,11 +45,16 @@ const reducer = (state = initialState, action) => {
                 inputValues: {...state.inputValues, comment:action.payload}
             };
             
-        case Type.FLAG:
-        return { 
-            ...state,
-            isShowForm: action.payload
-        }; 
+        case Type.FLAG_POST:
+            return { 
+                ...state,
+                isShowFormPost: action.payload
+            }; 
+        case Type.FLAG_COMMENT:
+            return { 
+                ...state,
+                isShowFormComment: action.payload
+            }; 
         case Type.REDIRECT:
             return { 
                 ...state,

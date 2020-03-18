@@ -4,6 +4,7 @@ export const Type = {
     PUT_TITLE: 'PUT_TITLE',
     PUT_BODY:'PUT_BODY',
     PUT_COMMENT:'PUT_COMMENT',
-    FLAG:'FLAG',
+    FLAG_POST:'FLAG_POST',
+    FLAG_COMMENT:'FLAG_COMMENT',
     REDIRECT:'REDIRECT'
 };

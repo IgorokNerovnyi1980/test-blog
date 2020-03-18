@@ -10,6 +10,7 @@ const initialState = {
         comment:''
     },
     isShowForm: false,
+    redirect:false,
 
 };
 
@@ -47,7 +48,12 @@ const reducer = (state = initialState, action) => {
         return { 
             ...state,
             isShowForm: action.payload
-        };
+        }; 
+        case Type.REDIRECT:
+            return { 
+                ...state,
+                redirect: action.payload
+            };
         default:
             return state;
     }

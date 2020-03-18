@@ -2,6 +2,10 @@ import axios from 'axios';
 import {Type} from './types';
 import {API} from '../constants'
 
+function putValueRedirect(bool){
+    return {type: Type.REDIRECT, payload: bool};
+};
+
 function putValueFlag(bool){
     return {type: Type.FLAG, payload: bool};
 };
@@ -29,7 +33,7 @@ function putSinglePostInStore(obj){
 
 
 export const getData = function () {
-
+    console.log('getData')
     return async function (dispatch) {
         const result = await axios
             .get(API.URL)
@@ -38,6 +42,7 @@ export const getData = function () {
             });
         if (result.status === 200) {
             dispatch(putPostsInStore(result.data));
+            
         };
 
     };
@@ -54,6 +59,22 @@ export const getSinglePost = function (id) {
 
         if (result.status === 200) {
             dispatch(putSinglePostInStore(result.data));
+        }
+
+    };
+};
+
+export const deleteSinglePost = function (id) {
+
+    return async function (dispatch) {
+        const result = await axios
+            .delete(`${API.URL}/${id}`)
+            .catch(error => {
+                return error;
+            });
+
+        if (result.status === 200) {
+           console.log(`delete post with id:${id}`)
         }
 
     };
@@ -87,6 +108,7 @@ export const handleSubmit = (obj) => {
 
         if (result.status === 201) {
             console.log('create new Post');
+            getData();
         }else{
             console.log('not created Post')
         }
@@ -94,9 +116,16 @@ export const handleSubmit = (obj) => {
     };
 };
 
+
 export const setFlag = (bool) => {
     return function (dispatch){
         dispatch(putValueFlag(bool));
+        }
+};
+
+export const setRedirect = (bool) => {
+    return function (dispatch){
+        dispatch(putValueRedirect(bool));
         }
 };
 

@@ -9,8 +9,10 @@ import Button from '../components/Button';
 import NewPost from '../components/NewPost';
 
 const Wrapper = styled.div`
-    width:100vw;
-    height:100vh;
+    width:100%;
+    min-width:100vw;
+    height:100%;
+    min-height:100vh;
     background-color:${variables.mainBG};
     display:flex;
     flex-direction:column;

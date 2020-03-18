@@ -20,6 +20,9 @@ const Wrapper = styled.div`
     align-items:center;
     cursor:pointer;
     transition:0.2s ease;
+    :last-child{
+        margin-bottom:10px;
+    }
     h3{   
         margin-left:10px;
         font-size:${variables.titleFZ};

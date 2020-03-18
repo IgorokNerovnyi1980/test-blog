@@ -8,6 +8,7 @@ const Wrapper = styled.div`
     width:90%;
     height:auto;
     min-height:70vh;
+    overflow:auto;
     padding-top: 10px;
     border-radius:5px;
     background-color:${variables.accentBG};

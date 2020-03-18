@@ -5,12 +5,10 @@ import Form from './Form';
 
 const Wrapper = styled.div`
     position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:91%;
-    height:auto;
-    min-height:71vh;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     padding-top: 10px;
     border-radius:5px;
     background-color:${variables.mainBG};

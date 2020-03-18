@@ -5,4 +5,5 @@ export const Type = {
     PUT_BODY:'PUT_BODY',
     PUT_COMMENT:'PUT_COMMENT',
     FLAG:'FLAG',
+    REDIRECT:'REDIRECT'
 };

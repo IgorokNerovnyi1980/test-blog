@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import {variables} from '../variables';
 import {connect} from 'react-redux';
-import {handleInputsChange, handleSubmit, setFlag} from '../redux/actions'
+import {
+    handleInputsChange,
+    handleSubmit,
+    setFlag,
+    getData} from '../redux/actions'
 //components
 import Button from '../components/Button';
 
@@ -45,12 +49,14 @@ const Form = (
         handleInputChange = () => { },
         handleSubmit = () => { },
         setFlag = () => { },
+        getData = () => { },
         val = null
     }) => {
 
         const fnInputChange = e => {
             handleInputChange(e.target.name, e.target.value);
         }
+        
         const fnSubmit = e => {
             e.preventDefault();
             const result = { 
@@ -61,6 +67,8 @@ const Form = (
             handleInputChange('title', '');
             handleInputChange('body', '');
             setFlag(false);
+            setTimeout( () => getData(), 1000)
+            
         }
 
         const fnCancel = () => {
@@ -92,6 +100,7 @@ const DTP = dispatch => ({
     handleInputChange: (name, value) => dispatch(handleInputsChange(name, value)),
     handleSubmit: (obj) => dispatch(handleSubmit(obj)),
     setFlag: (bool) => dispatch(setFlag(bool)),
+    getData: () => dispatch(getData())
 });
 
 export default connect(STP, DTP,)(Form);

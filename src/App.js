@@ -95,6 +95,7 @@ const STP = state => (
 );
 
 const DTP = dispatch => ({
-    getData: () => dispatch(getData())});
+    getData: () => dispatch(getData()),
+})
 
 export default connect(STP, DTP,)(App);

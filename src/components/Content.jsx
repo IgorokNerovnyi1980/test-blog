@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import {NavLink} from 'react-router-dom';
 import {variables} from '../variables';
 
 const Wrapper = styled.div`
@@ -27,10 +26,6 @@ const Wrapper = styled.div`
         color:${variables.textClr};
     }
 `;
-
-// const WrapLink = styled(NavLink)`
-//      text-decoration:none; 
-// `;
 
 const Content = (
     {
